@@ -57,6 +57,10 @@ Route::middleware(['auth','admin'])->controller(AdminController::class)->group(f
     Route::delete('/admin/coupon_delete/{id}','coupon_delete')->name('admin.coupon.delete');
 
 
+    /* ----------------ShowOrder on Admin------------ */
+    Route::get('/admin/orders','orders')->name('admin.orders');
+
+
 });
 
   /* ------------- ShopController----------*/
@@ -82,6 +86,8 @@ Route::controller(CartController::class)->group(function(){
 
     /* ----------checkout---------- */
     Route::get('/checkout','checkout')->name('cart.checkout');
+    Route::post('/place-an-order','place_an_order')->name('cart.place.an.order');
+    Route::get('/order-confirmation','order_confirmation')->name('cart.order.confirmation');
 
 });
 
