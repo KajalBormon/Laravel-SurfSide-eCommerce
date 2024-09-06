@@ -18,6 +18,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 /* -------------UserController For FrontEnd ----------------*/
 Route::middleware(['auth'])->controller(UserController::class)->group(function(){
     Route::get('/user-dashboard', 'index')->name('user.index');
+    Route::get('/user/orders','orders')->name('user.orders');
+    Route::get('/user/order_details/{id}','order_details')->name('user.order.details');
+    Route::put('/user/order_cancel','order_cancel')->name('user.order.cancel');
 });
 
 /* ---------------AdminController For BackEnd -----------------*/
@@ -59,6 +62,8 @@ Route::middleware(['auth','admin'])->controller(AdminController::class)->group(f
 
     /* ----------------ShowOrder on Admin------------ */
     Route::get('/admin/orders','orders')->name('admin.orders');
+    Route::get('/admin/order_details/{id}','order_details')->name('admin.order.details');
+    Route::put('/admin/update_order_status','update_order_status')->name('admin.update.order.status');
 
 
 });

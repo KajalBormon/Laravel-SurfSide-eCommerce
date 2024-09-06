@@ -109,7 +109,7 @@ class CartController extends Controller
             return redirect()->route('login');
         }
 
-        $address = Address::where('user_id',Auth::user()->id)->where('isdefault',true)->first();
+        $address = Address::where('user_id',Auth::user()->id)->where('isdefault',1)->first();
         return view('checkout',compact('address'));
     }
 
@@ -148,22 +148,22 @@ class CartController extends Controller
         }
         $this->setAmountForCheckout();
 
-        $order  = new Order();
-        $order->user_id = $user_id;
-        $order->subtotal = Session::get('checkout')['subtotal'];
-        $order->discount = Session::get('checkout')['discount'];
-        $order->tax = Session::get('checkout')['tax'];
-        $order->total = Session::get('checkout')['total'];
-        $order->name = $address->name;
-        $order->phone = $address->phone;
-        $order->locality = $address->locality;
-        $order->address = $address->address;
-        $order->city = $address->city;
-        $order->state = $address->state;
-        $order->country = $address->country;
-        $order->landmark = $address->landmark;
-        $order->zip = $address->zip;
-        $order -> save();
+        $order = Order::create([
+            'user_id' => $user_id,
+            'subtotal' => Session::get('checkout')['subtotal'],
+            'discount' => Session::get('checkout')['discount'],
+            'tax' => Session::get('checkout')['tax'],
+            'total' => Session::get('checkout')['total'],
+            'name' => $address->name,
+            'phone' => $address->phone,
+            'locality' => $address->locality,
+            'address' => $address->address,
+            'city' => $address->city,
+            'state' => $address->state,
+            'country' => $address->country,
+            'landmark' => $address->landmark,
+            'zip' => $address->zip
+        ]);
 
         foreach(Cart::instance('cart')->content() as $item){
             $orderItem = new OrderItem();
@@ -193,13 +193,14 @@ class CartController extends Controller
         Session::forget('coupon');
         Session::forget('checkout');
         Session::forget('discounts');
-        Session::put('order_id',$order->id);
+        Session::put('order_id', $order->id);
         return redirect()->route('cart.order.confirmation');
 
     }
 
+
     public function setAmountForCheckout(){
-        if(!Cart::instance('cart')->content()->count()>0){
+        if(!Cart::instance('cart')->count()>0){
             Session::forget('checkout');
             return;
         }

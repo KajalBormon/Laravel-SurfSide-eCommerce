@@ -63,13 +63,21 @@
                                 <td class="text-center">${{ $order->tax }}</td>
                                 <td class="text-center">${{ $order->total }}</td>
 
-                                <td class="text-center">{{ $order->status }}</td>
+                                <td class="text-center">
+                                    @if($order->status=='delivered')
+                                        <span class="badge bg-success">Delivered</span>
+                                    @elseif($order->status=='canceled')
+                                        <span class="badge bg-danger">Canceled</span>
+                                    @else
+                                        <span class="badge bg-warning">Ordered</span>
+                                    @endif
+                                </td>
                                 <td class="text-center">{{ $order->created_at }}</td>
                                 <td class="text-center">{{ $order->orderItem->count() }}</td>
                                 <td class="text-center">{{ $order->delivered_date }}</td>
 
                                 <td class="text-center">
-                                    <a href="order-details.html">
+                                    <a href="{{ route('admin.order.details',$order->id) }}">
                                         <div class="list-icon-function view-icon">
                                             <div class="item eye">
                                                 <i class="icon-eye"></i>
