@@ -65,6 +65,14 @@ Route::middleware(['auth','admin'])->controller(AdminController::class)->group(f
     Route::get('/admin/order_details/{id}','order_details')->name('admin.order.details');
     Route::put('/admin/update_order_status','update_order_status')->name('admin.update.order.status');
 
+    /* --------------Slider--------------- */
+    Route::get('/admin/slider','sliders')->name('admin.slider');
+    Route::get('/admin/slider-add','sliders_add')->name('admin.sliders.add');
+    Route::post('/admin/sliders_store','sliders_store')->name('admin.sliders.store');
+    Route::get('/admin/slider_edit/{id}','slider_edit')->name('admin.slider.edit');
+    Route::put('/admin/slider_update/{id}','slider_update')->name('admin.slider.update');
+    Route::delete('/admin/slider_delete/{id}','slider_delete')->name('admin.slider.delete');
+
 
 });
 
