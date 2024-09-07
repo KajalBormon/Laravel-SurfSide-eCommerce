@@ -261,6 +261,32 @@
       .logo__image {
         max-width: 220px;
       }
+      .product-item{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 15px;
+        padding-right: 5px;
+        transition: all 0.3s ease;
+      }
+      .product-item .image{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 50px;
+        height: 50px;
+        gap: 10px;
+        flex-shrink: 0;
+        padding: 5px;
+        border-radius: 10px;
+        background: #EEF4F8;
+      }
+      #box-content-search{
+        list-style: none;
+      }
+      #box-content-search .product-item{
+        margin-bottom: 10px;
+      }
     </style>
     <div class="header-mobile header_sticky">
       <div class="container d-flex align-items-center h-100">
@@ -323,7 +349,7 @@
                 <a href="about.html" class="navigation__link">About</a>
               </li>
               <li class="navigation__item">
-                <a href="contact.html" class="navigation__link">Contact</a>
+                <a href="{{ route('home.contact') }}" class="navigation__link">Contact</a>
               </li>
             </ul>
           </div>
@@ -412,7 +438,7 @@
                 <a href="about.html" class="navigation__link">About</a>
               </li>
               <li class="navigation__item">
-                <a href="contact.html" class="navigation__link">Contact</a>
+                <a href="{{ route('home.contact') }}" class="navigation__link">Contact</a>
               </li>
             </ul>
           </nav>
@@ -434,7 +460,7 @@
                   <p class="text-uppercase text-secondary fw-medium mb-4">What are you looking for?</p>
                   <div class="position-relative">
                     <input class="search-field__input search-popup__input w-100 fw-medium" type="text"
-                      name="search-keyword" placeholder="Search products" />
+                      name="search-keyword" id="search-input" placeholder="Search products" />
                     <button class="btn-icon search-popup__submit" type="submit">
                       <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -445,19 +471,9 @@
                   </div>
 
                   <div class="search-popup__results">
-                    <div class="sub-menu search-suggestion">
-                      <h6 class="sub-menu__title fs-base">Quicklinks</h6>
-                      <ul class="sub-menu__list list-unstyled">
-                        <li class="sub-menu__item"><a href="shop2.html" class="menu-link menu-link_us-s">New Arrivals</a>
-                        </li>
-                        <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Dresses</a></li>
-                        <li class="sub-menu__item"><a href="shop3.html" class="menu-link menu-link_us-s">Accessories</a>
-                        </li>
-                        <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Footwear</a></li>
-                        <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Sweatshirt</a></li>
-                      </ul>
-                    </div>
+                    <ul id="box-content-search">
 
+                    </ul>
                     <div class="search-result row row-cols-5"></div>
                   </div>
                 </form>
@@ -676,7 +692,48 @@
     <script src="{{ asset('assets/js/plugins/swiper.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/countdown.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script>
+        $(function(){
+            $('#search-input').on('keyup', function(){
+                var searchquery = $(this).val();
+                if (searchquery.length > 2) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ route('home.search') }}",
+                        data: { query: searchquery },
+                        dataType: 'json',
+                        success: function(data){
+                            $('#box-content-search').html('');
+
+                            $.each(data, function(index, item){
+                                var imageUrl = "{{ asset('uploads/products/thumbnails') }}/" + item.image;
+
+                                $('#box-content-search').append(`
+                                    <li class="product-item gap14 mb-10">
+                                        <div class="image no-bg">
+                                            <img src="${imageUrl}" alt="${item.name}">
+                                        </div>
+                                        <div class="flex items-center justify-between gap20 flex-grow">
+                                            <div class="name">
+                                                <a href="${item.details_url}" class="body-tex">${item.name}</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="mb-10">
+                                        <div class="divider"></div>
+                                    </div>
+                                `);
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
     @stack("scripts")
   </body>
 </html>
+
+

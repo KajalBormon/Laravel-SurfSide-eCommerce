@@ -11,8 +11,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-/* -------------------Index Controller--------------- */
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+/* -------------------Home Controller--------------- */
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/','index')->name('home.index');
+    Route::get('/contact','contact')->name('home.contact');
+    Route::post('/contact_store','contact_store')->name('home.contact.store');
+    Route::get('/search','search')->name('home.search');
+});
 
 
 /* -------------UserController For FrontEnd ----------------*/
@@ -72,6 +77,13 @@ Route::middleware(['auth','admin'])->controller(AdminController::class)->group(f
     Route::get('/admin/slider_edit/{id}','slider_edit')->name('admin.slider.edit');
     Route::put('/admin/slider_update/{id}','slider_update')->name('admin.slider.update');
     Route::delete('/admin/slider_delete/{id}','slider_delete')->name('admin.slider.delete');
+
+    /* ---------------Contact------------------- */
+    Route::get('/admin/all-message','contacts')->name('admin.contact');
+    Route::delete('admin/contact-delete/{id}','contact_delete')->name('admin.contact.delete');
+
+    /* -------------Search------------ */
+    Route::get('/admin/search','search')->name('admin.search');
 
 
 });
