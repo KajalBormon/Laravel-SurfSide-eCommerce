@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,47 +10,51 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-   {{-- Admin Index Header Equipment --}}
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/animation.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.min.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-   <link rel="stylesheet" href="{{ asset('font/fonts.css') }}">
-   <link rel="stylesheet" href="{{ asset('icon/style.css') }}">
-   <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-   <link rel="apple-touch-icon-precomposed" href="{{ asset('images/favicon.ico') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.min.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
-    @stack("styles")
+    {{-- Admin Index Header Equipment --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animation.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('font/fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('icon/style.css') }}">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('images/favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+    @stack('styles')
     <style>
-        .product-item{
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 15px;
-        padding-right: 5px;
-        transition: all 0.3s ease;
-      }
-      .product-item .image{
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        width: 50px;
-        height: 50px;
-        gap: 10px;
-        flex-shrink: 0;
-        padding: 5px;
-        border-radius: 10px;
-        background: #EEF4F8;
-      }
-      #box-content-search{
-        list-style: none;
-      }
-      #box-content-search .product-item{
-        margin-bottom: 10px;
-      }
+        .product-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+            padding-right: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .product-item .image {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 50px;
+            height: 50px;
+            gap: 10px;
+            flex-shrink: 0;
+            padding: 5px;
+            border-radius: 10px;
+            background: #EEF4F8;
+        }
+
+        #box-content-search {
+            list-style: none;
+        }
+
+        #box-content-search .product-item {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
+
 <body class="body">
     <div id="wrapper">
         <div id="page" class="">
@@ -64,8 +69,9 @@
                 <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="{{ route('admin.index') }}" id="site-logo-inner">
-                            <img class="" id="logo_header1" alt="" src="{{ asset('images/logo/logo.png') }}"
-                                data-light="images/logo/logo.png" data-dark="images/logo/logo.png">
+                            <img class="" id="logo_header1" alt=""
+                                src="{{ asset('images/logo/logo.png') }}" data-light="images/logo/logo.png"
+                                data-dark="images/logo/logo.png">
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-menu-left"></i>
@@ -200,9 +206,10 @@
                         <div class="wrap">
                             <div class="header-left">
                                 <a href="index-2.html">
-                                    <img class="" id="logo_header_mobile" alt="" src="{{ asset('images/logo/logo.png') }}"
-                                        data-light="images/logo/logo.png" data-dark="images/logo/logo.png"
-                                        data-width="154px" data-height="52px" data-retina="images/logo/logo.png">
+                                    <img class="" id="logo_header_mobile" alt=""
+                                        src="{{ asset('images/logo/logo.png') }}" data-light="images/logo/logo.png"
+                                        data-dark="images/logo/logo.png" data-width="154px" data-height="52px"
+                                        data-retina="images/logo/logo.png">
                                 </a>
                                 <div class="button-show-hide">
                                     <i class="icon-menu-left"></i>
@@ -211,7 +218,9 @@
 
                                 <form class="form-search flex-grow">
                                     <fieldset class="name">
-                                        <input type="text" placeholder="Search here..." class="show-search" name="name" id="search-input" tabindex="2" value="" aria-required="true" required="" autocomplete="off">
+                                        <input type="text" placeholder="Search here..." class="show-search"
+                                            name="name" id="search-input" tabindex="2" value=""
+                                            aria-required="true" required="" autocomplete="off">
                                     </fieldset>
                                     <div class="button-submit">
                                         <button class="" type="submit"><i class="icon-search"></i></button>
@@ -284,7 +293,8 @@
                                                     <div>
                                                         <div class="body-title-2">Order pending: <span>ID 305830</span>
                                                         </div>
-                                                        <div class="text-tiny">Ultricies at rhoncus at ullamcorper</div>
+                                                        <div class="text-tiny">Ultricies at rhoncus at ullamcorper
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </li>
@@ -302,7 +312,8 @@
                                             id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="header-user wg-user">
                                                 <span class="image">
-                                                    <img src="{{ asset('images/avatar/user-1.png') }}" alt="">
+                                                    <img src="{{ asset('images/avatar/user-1.png') }}"
+                                                        alt="">
                                                 </span>
                                                 <span class="flex flex-column">
                                                     <span class="body-title mb-2">{{ Auth::user()->name }}</span>
@@ -346,9 +357,11 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <form action="{{ route('logout') }}" method="post" id="logout-form">
+                                                <form action="{{ route('logout') }}" method="post"
+                                                    id="logout-form">
                                                     @csrf
-                                                    <a href="{{ route('logout') }}" class="user-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+                                                    <a href="{{ route('logout') }}" class="user-item"
+                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
                                                         <div class="icon">
                                                             <i class="icon-log-out"></i>
                                                         </div>
@@ -381,22 +394,27 @@
     <script src="{{ asset('js/apexcharts/apexcharts.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
-        $(function(){
-            $('#search-input').on('keyup', function(){
+        $(function() {
+            $('#search-input').on('keyup', function() {
                 var searchquery = $(this).val();
                 if (searchquery.length > 2) {
                     $.ajax({
                         type: "GET",
                         url: "{{ route('admin.search') }}",
-                        data: { query: searchquery },
+                        data: {
+                            query: searchquery
+                        },
                         dataType: 'json',
-                        success: function(data){
-                            $('#box-content-search').html('');  // Clear previous results
+                        success: function(data) {
+                            $('#box-content-search').html(''); // Clear previous results
 
-                            $.each(data, function(index, item){
+                            $.each(data, function(index, item) {
                                 // Use the URL passed from the server
-                                var imageUrl = "{{ asset('uploads/products/thumbnails') }}/" + item.image;
-                                var detailsUrl = item.details_url; // Get the correct product details URL
+                                var imageUrl =
+                                    "{{ asset('uploads/products/thumbnails') }}/" +
+                                    item.image;
+                                var detailsUrl = item
+                                    .details_url; // Get the correct product details URL
 
                                 $('#box-content-search').append(`
                                     <li class="product-item gap14 mb-10">
@@ -421,7 +439,8 @@
         });
     </script>
 
-     @stack("scripts")
+
+    @stack('scripts')
 </body>
 
 </html>
